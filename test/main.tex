@@ -1,0 +1,95 @@
+
+\documentclass[12pt,A4]{article}
+\usepackage{minted}
+\usemintedstyle[jasonagent]{jacamo}
+\usemintedstyle[jacamoproject]{jacamo}
+\usemintedstyle[java]{autumn}
+
+\begin{document}
+
+\title{Minted Example for JaCaMo}
+\author{Jomi Hubner}
+
+\maketitle
+
+\section{in line}
+
+\begin{minted}{jasonagent}
+// Code of dummy agents (Blue team)
+
+// the following plans (+pos....) react to the starting step
+// (since each new step causes a new +pos perception)
+
+/* -- useful rules */
+
+// whether to go to depot
+go_depot :- carrying_gold(3).
+go_depot :- carrying_gold(N) & N > 0 & pos(_,_,Step) & steps(_,NSteps) & Step+200 > NSteps.
+
++pos(_,_,_)
+   <- !define_new_pos.
+
++!define_new_pos
+   <- ?pos(X,Y,_);
+      ?random_pos(NX,NY,test);
+     //.print("New point ",NX,",",NY);
+      -+back_pos(NX,NY);
+      +p;
+      -p;
+      X > Y+2-1;
+      a ||| b;
+      a |&| b;
+      jia.direction(X, Y, NX, NY, D);
+      do(D).
+\end{minted}
+
+\section{Agent}
+
+\inputminted [
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+%bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]{jasonagent}{dummy.asl}
+
+\section{Project}
+
+
+\inputminted [linenos]{jacamoproject}{writing_paper.jcm}
+
+\inputminted [style=autumn]{jacamoproject}{writing_paper.jcm}
+
+and some java
+
+\begin{minted}[tabsize=4,fontsize=\scriptsize]{java}
+public class UserGUI extends GUIArtifact {
+
+	private InputWindow frame;
+
+	public void setup() {
+		try {
+			frame = new InputWindow(getCreatorId().getAgentName() );
+			frame.pack();
+
+			defineObsProperty("activity", "none");
+
+			linkActionEventToOp(frame.updateButton,"updateActivity");
+			linkActionEventToOp(frame.exitButton,"exit");
+			linkKeyStrokeToOp(frame.activityField,"ENTER","updateActivity");
+
+			frame.setVisible(true);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+	@OPERATION void updateActivity(ActionEvent ev) {
+		frame.exitButton.setEnabled(true);
+		getObsProperty("activity").updateValue( frame.getActivity() );
+	}
+}
+\end{minted}
+
+\end{document}
