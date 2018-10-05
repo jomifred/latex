@@ -1,0 +1,5 @@
+.DS_Store
+*.aux
+_minted-main
+*.log
+*~
