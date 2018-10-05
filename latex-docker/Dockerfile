@@ -2,9 +2,6 @@
 
 FROM blang/latex:ctanfull
 
-# Minted + Pygments
-#RUN tlmgr install minted
-
 RUN apt-get update \
      && apt-get install -qy python python-pip mercurial\
      && pip install pygments \

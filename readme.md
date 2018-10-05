@@ -4,7 +4,7 @@ This project provides a Docker image to compile LaTeX documents that uses minted
 
 See [test/main.pdf](https://github.com/jomifred/latex/blob/master/test/main.pdf) for an example of the result.
 
-Step to use:
+Steps to use:
 
 0. Install Docker
 1. Download [`scripts/latex-docker`](https://raw.githubusercontent.com/jomifred/latex/master/scripts/latex-docker) and place it somewhere in your `PATH`
