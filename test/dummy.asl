@@ -17,6 +17,7 @@ random_pos(X,Y) :-
    jia.random(RY,20,5) ||| Y = (RY-10) div AgY &
    not jia.obstacle(X,Y).
 
+^!goto(X,Y)[state(S)] <- .print("goto state is ",S).
 
 /* -- Gold found! -- */
 
