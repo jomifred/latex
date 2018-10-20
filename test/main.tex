@@ -26,6 +26,8 @@
 go_depot :- carrying_gold(3).
 go_depot :- carrying_gold(N) & N > 0 & pos(_,_,Step) & steps(_,NSteps) & Step+200 > NSteps.
 
+^!goto(X,Y)[state(S)] <- .print("goto state is ",S).
+
 +pos(_,_,_)
    <- !define_new_pos.
 
