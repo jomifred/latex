@@ -2,6 +2,7 @@
 
 FROM blang/latex:ctanfull
 
+#udpate hg
 RUN apt-get update \
      && apt-get install -qy python python-pip mercurial\
      && pip install pygments \
