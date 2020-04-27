@@ -3,3 +3,4 @@
 _minted-main
 *.log
 *~
+.bash_history
